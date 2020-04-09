@@ -23,6 +23,7 @@ class UsersCanCreateStatusesTest extends DuskTestCase
                     ->visit('/')
                     ->type('body', 'Mi primer estado')
                     ->press('#create-status')
+                    ->waitForText('Mi primer estado')
                     ->assertSee('Mi primer estado')
             ;
         });
