@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         submit() {
-            axios.post('/status', {body: this.body})
+            axios.post('/statuses', {body: this.body})
                 .then(res => {
                     this.statuses.push(res.data);
                     this.body = ''

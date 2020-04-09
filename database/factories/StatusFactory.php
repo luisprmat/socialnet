@@ -3,10 +3,12 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Status;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Status::class, function (Faker $faker) {
     return [
-        //
+        'body' => $faker->paragraph,
+        'user_id' => factory(User::class)->create()->id
     ];
 });
