@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+Route::view('/', 'welcome');
 
 Route::post('status', 'StatusController@store')->name('status.store')->middleware('auth');
 // Route::resource('status', 'StatusController');
