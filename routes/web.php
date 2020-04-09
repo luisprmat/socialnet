@@ -1,6 +1,6 @@
 <?php
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('home');
 
 Route::post('status', 'StatusController@store')->name('status.store')->middleware('auth');
 // Route::resource('status', 'StatusController');

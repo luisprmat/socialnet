@@ -12,4 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css')
+   .sourceMaps(); // Fix issue with souceMap failed in Chrome Console
+
+mix.browserSync({
+    proxy: 'https://socialnet.dev',
+    open: false
+});
