@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click="redirectIfGuest">
         <div class="card mb-3 border-0 shadow-sm" v-for="status in statuses">
             <div class="card-body d-flex flex-column">
                 <div class="d-flex align-items-center mb-3">
@@ -18,7 +18,7 @@
                         class="btn btn-link btn-sm"
                         dusk="unlike-btn"
                 ><strong>
-                    <i class="fas fa-thumbs-up fa-fw"></i>
+                    <i class="fas fa-thumbs-up fa-fw text-primary mr-1"></i>
                     TE GUSTA
                 </strong></button>
 
@@ -26,10 +26,10 @@
                         @click="like(status)"
                         class="btn btn-link btn-sm"
                         dusk="like-btn"
-                >
-                    <i class="far fa-thumbs-up fa-fw"></i>
+                ><i class="far fa-thumbs-up fa-fw text-primary mr-1"></i>
                     ME GUSTA
                 </button>
+
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
         mounted() {
             axios.get('/statuses')
                 .then(res => {
-                    this.statuses =res.data.data
+                    this.statuses = res.data.data
                 })
                 .catch(err => {
                     console.log(err.response.data);

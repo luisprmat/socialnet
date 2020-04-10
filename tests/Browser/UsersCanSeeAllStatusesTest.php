@@ -18,7 +18,7 @@ class UsersCanSeeAllStatusesTest extends DuskTestCase
      */
     public function users_can_see_all_statuses_on_the_homepage()
     {
-        $statuses = factory(Status::class, 3)->create();
+        $statuses = factory(Status::class, 3)->create(['created_at' => now()->subMinute()]);
 
         $this->browse(function (Browser $browser) use ($statuses) {
             $browser->visit('/')
@@ -27,7 +27,7 @@ class UsersCanSeeAllStatusesTest extends DuskTestCase
             foreach($statuses as $status) {
                 $browser->assertSee($status->body)
                     ->assertSee($status->user->name)
-                    ->assertSee($status->created_at->addSecond()->diffForHumans()) //addSecond: delay of dusk
+                    ->assertSee($status->created_at->diffForHumans())
                 ;
             }
         });

@@ -9,7 +9,14 @@ module.exports = {
             return !! user.content;
         },
         guest() {
-            return ! this.isAuthenticated();
+            return ! this.isAuthenticated;
         }
     },
+    methods: {
+        redirectIfGuest() {
+            if (this.guest) {
+                return window.location.href = '/login';
+            }
+        }
+    }
 };
