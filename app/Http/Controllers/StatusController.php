@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StatusResource;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,9 @@ class StatusController extends Controller
      */
     public function index()
     {
-        return Status::latest()->paginate();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return StatusResource::collection(
+            Status::latest()->paginate()
+        );
     }
 
     /**
@@ -44,7 +37,7 @@ class StatusController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return response()->json(['body' => $status->body]);
+        return StatusResource::make($status);
     }
 
     /**

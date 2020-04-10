@@ -25,6 +25,7 @@ class UsersCanCreateStatusesTest extends DuskTestCase
                     ->press('#create-status')
                     ->waitForText('Mi primer estado')
                     ->assertSee('Mi primer estado')
+                    ->assertSeeIn('h5', $user->name)
             ;
         });
     }

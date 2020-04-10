@@ -32,7 +32,7 @@ class CreateStatusTest extends TestCase
         ]);
 
         $response->assertJson([
-            'body' => 'Mi primer estado'
+            'data' => ['body' => 'Mi primer estado']
         ]);
 
         $this->assertDatabaseHas('statuses', [

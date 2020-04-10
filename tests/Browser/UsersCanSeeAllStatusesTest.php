@@ -25,7 +25,10 @@ class UsersCanSeeAllStatusesTest extends DuskTestCase
                     ->waitForText($statuses->first()->body);
 
             foreach($statuses as $status) {
-                $browser->assertSee($status->body);
+                $browser->assertSee($status->body)
+                    ->assertSee($status->user->name)
+                    ->assertSee($status->created_at->addSecond()->diffForHumans()) //addSecond: delay of dusk
+                ;
             }
         });
     }
