@@ -9,7 +9,10 @@
                 ></textarea>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary" id="create-status">Publicar</button>
+                <button class="btn btn-primary" id="create-status">
+                    <i class="fas fa-paper-plane fa-fw"></i>
+                    Publicar
+                </button>
             </div>
         </form>
         <div v-else class="card-body">

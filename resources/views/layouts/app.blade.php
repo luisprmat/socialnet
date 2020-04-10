@@ -13,7 +13,10 @@
         <div id="app">
             <nav class="navbar navbar-expand-sm navbar-light navbar-socialapp shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route('home') }}">Social App</a>
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <i class="fas fa-address-book fa-fw text-primary mr-1"></i>
+                        Social App
+                    </a>
                     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

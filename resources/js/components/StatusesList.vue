@@ -11,6 +11,26 @@
                 </div>
                 <p class="card-text text-secondary" v-text="status.body"></p>
             </div>
+            <div class="card-footer p-2">
+
+                <button v-if="status.is_liked"
+                        @click="unlike(status)"
+                        class="btn btn-link btn-sm"
+                        dusk="unlike-btn"
+                ><strong>
+                    <i class="fas fa-thumbs-up fa-fw"></i>
+                    TE GUSTA
+                </strong></button>
+
+                <button v-else
+                        @click="like(status)"
+                        class="btn btn-link btn-sm"
+                        dusk="like-btn"
+                >
+                    <i class="far fa-thumbs-up fa-fw"></i>
+                    ME GUSTA
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -33,6 +53,20 @@
             EventBus.$on('status-created', status => {
                 this.statuses.unshift(status);
             })
+        },
+        methods: {
+            like(status) {
+                axios.post(`/statuses/${status.id}/likes`)
+                    .then(res => {
+                        status.is_liked = true;
+                    })
+            },
+            unlike(status) {
+                axios.delete(`/statuses/${status.id}/likes`)
+                    .then(res => {
+                        status.is_liked = false;
+                    })
+            }
         }
     }
 </script>
