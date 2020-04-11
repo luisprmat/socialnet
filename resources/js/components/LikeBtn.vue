@@ -52,3 +52,11 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+	.comments-like-btn {
+        font-size: 0.8em;
+        padding-left: 0;
+		i { display: none; }
+	}
+</style>
