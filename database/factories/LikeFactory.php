@@ -10,6 +10,5 @@ use Faker\Generator as Faker;
 $factory->define(Like::class, function (Faker $faker) {
     return [
         'user_id' => factory(User::class)->create()->id,
-        'status_id' => factory(Status::class)->create()->id
     ];
 });
