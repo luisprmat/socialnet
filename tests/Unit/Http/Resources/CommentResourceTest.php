@@ -34,7 +34,12 @@ class CommentResourceTest extends TestCase
         );
 
         $this->assertEquals(
-            '/images/default-user.png',
+            $comment->user->link(),
+            $commentResource['user_link']
+        );
+
+        $this->assertEquals(
+            $comment->user->avatar(),
             $commentResource['user_avatar']
         );
 
