@@ -52,7 +52,7 @@ class CreateStatusTest extends TestCase
         $response->assertStatus(422);
 
         $response->assertJsonStructure([
-            'errors' => ['body']
+            'message' ,'errors' => ['body']
         ]);
     }
 
