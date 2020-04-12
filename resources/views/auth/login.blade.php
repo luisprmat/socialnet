@@ -22,7 +22,7 @@
                             >
 
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span dusk="validation-errors" class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" id="login-btn" class="btn btn-primary btn-block">
+                            <button type="submit" dusk="login-btn" class="btn btn-primary btn-block">
                                 {{ __('Login') }}
                             </button>
                         </div>

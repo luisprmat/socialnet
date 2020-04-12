@@ -168,7 +168,7 @@ return [
         'minute'                => 'minuto',
         'mobile'                => 'móvil',
         'month'                 => 'mes',
-        'name'                  => 'nombre',
+        'name'                  => 'nombre de usuario', //'nombre'
         'password'              => 'contraseña',
         'password_confirmation' => 'confirmación de la contraseña',
         'phone'                 => 'teléfono',

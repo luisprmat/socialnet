@@ -9,7 +9,7 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class UserCanCommentStatusTest extends DuskTestCase
+class UsersCanCommentStatusTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
