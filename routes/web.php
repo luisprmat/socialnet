@@ -11,7 +11,7 @@ Route::post('statuses', 'StatusController@store')->name('statuses.store')->middl
 Route::post('statuses/{status}/likes', 'StatusLikesController@store')->name('statuses.likes.store')->middleware('auth');
 Route::delete('statuses/{status}/likes', 'StatusLikesController@destroy')->name('statuses.likes.destroy')->middleware('auth');
 
-// Statuses Comments routes
+// Statuses comments routes
 Route::post('statuses/{status}/comments', 'StatusCommentsController@store')->name('statuses.comments.store')->middleware('auth');
 
 // Comments likes routes
@@ -23,6 +23,14 @@ Route::get('@{user}', 'UserController@show')->name('users.show');
 
 // User statuses routes
 Route::get('users/{user}/statuses', 'UsersStatusController@index')->name('users.statuses.index');
+
+// Friendships routes
+Route::post('friendships/{recipient}', 'FriendshipsController@store')->name('friendships.store');
+Route::delete('friendships/{recipient}', 'FriendshipsController@destroy')->name('friendships.destroy');
+
+// Accept friendships routes
+Route::post('accept-friendships/{sender}', 'AcceptFriendshipsController@store')->name('accept-friendships.store');
+Route::delete('accept-friendships/{sender}', 'AcceptFriendshipsController@destroy')->name('accept-friendships.destroy');
 
 Auth::routes();
 
