@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\User;
+use Tests\TestCase;
 use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 
 class ListStatusesTest extends TestCase
 {
@@ -41,6 +41,37 @@ class ListStatusesTest extends TestCase
         $this->assertEquals(
             $status1->body,
             $response->json('data.3.body')
+        );
+    }
+
+    /** @test */
+    function can_get_statuses_for_a_specific_user()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+
+        $status1 = factory(Status::class)->create(['user_id' => $user->id, 'created_at' => now()->subday()]);
+        $status2 = factory(Status::class)->create(['user_id' => $user->id]);
+
+        $otherStatuses = factory(Status::class, 2)->create();
+
+        $response = $this->actingAs($user)
+            ->getJson(route('users.statuses.index', $user));
+
+        $response->assertSuccessful();
+
+        $response->assertJson([
+            'meta' => ['total' => 2]
+        ]);
+
+        $response->assertJsonStructure([
+            'data', 'links' => ['prev', 'next']
+        ]);
+
+        $this->assertEquals(
+            $status2->body,
+            $response->json('data.0.body')
         );
     }
 }

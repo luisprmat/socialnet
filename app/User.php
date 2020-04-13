@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -35,6 +36,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['avatar'];
+
     public function getRouteKeyName()
     {
         return 'name';
@@ -48,5 +51,15 @@ class User extends Authenticatable
     public function avatar()
     {
         return '/images/default-user.png';
+    }
+
+    public function getAvatarAttribute()
+    {
+        return $this->avatar();
+    }
+
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
     }
 }
