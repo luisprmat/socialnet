@@ -14,14 +14,14 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $user1 = User::first();
-        // $user2 = User::last();
+        $user2 = User::find(2);
 
         factory(Status::class, 3)->create([
             'user_id' => $user1->id
         ]);
 
-        factory(Status::class)->create([
-            // 'user_id' => $user2->id
+        factory(Status::class, 2)->create([
+            'user_id' => $user2->id
         ]);
 
         factory(Status::class)->times(5)->create();
