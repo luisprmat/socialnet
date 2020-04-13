@@ -37,7 +37,7 @@
                     })
             },
             getMethod() {
-                if (this.localFriendshipStatus === 'pending') {
+                if (this.localFriendshipStatus === 'pending' || this.localFriendshipStatus === 'accepted') {
                     return 'delete';
                 }
                 return 'post';
@@ -45,9 +45,14 @@
         },
         computed: {
             getText() {
-                if(this.localFriendshipStatus === 'pending')
-                {
+                if(this.localFriendshipStatus === 'pending') {
                     return 'Cancelar solicitud';
+                }
+                if (this.localFriendshipStatus === 'accepted') {
+                    return 'Eliminar de mis amigos';
+                }
+                if (this.localFriendshipStatus === 'denied') {
+                    return 'Solicitud denegada';
                 }
                 return 'Solicitar amistad';
             }
