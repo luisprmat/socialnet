@@ -1,5 +1,6 @@
 <template>
     <button
+        dusk="request-friendship"
         @click="toggleFriendshipStatus"
     >
         {{ getText }}
