@@ -88,6 +88,11 @@
                 comments: this.status.comments
             }
         },
+        mounted() {
+            Echo.channel(`statuses.${this.status.id}.comments`).listen('CommentCreated', ({comment}) => {
+                this.comments.push(comment);
+            })
+        },
         components: { LikeBtn },
         methods: {
             addComment() {
