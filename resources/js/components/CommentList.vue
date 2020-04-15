@@ -1,37 +1,19 @@
 <template>
     <div>
-        <div v-for="comment in comments" class="mb-3">
-            <div class="d-flex">
-                <img width="34px" height="34px" class="rounded shadow-sm mr-2" :src="comment.user.avatar" :alt="comment.user.name">
-                <div class="flex-grow-1">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-2 text-secondary">
-                            <a :href="comment.user.link"><strong>{{ comment.user.name }}</strong></a>
-                            {{ comment.body }}
-                        </div>
-                    </div>
-                    <small class="badge badge-pill badge-primary py-1 px-2 mt-1 float-right" dusk="comment-likes-count">
-                        <i class="fas fa-thumbs-up fa-fw"></i>
-                        {{ comment.likes_count }}
-                    </small>
-
-                    <like-btn
-                        dusk="comment-like-btn"
-                        :url="`/comments/${comment.id}/likes`"
-                        :model="comment"
-                        class="comments-like-btn"
-                    ></like-btn>
-                </div>
-            </div>
-        </div>
+        <comment-list-item
+            v-for="comment in comments"
+            :comment="comment"
+            :key="comment.id"
+            class="mb-3"
+        ></comment-list-item>
     </div>
 </template>
 
 <script>
-    import LikeBtn from './LikeBtn';
+    import CommentListItem from './CommentListItem';
 
     export default {
-        components: { LikeBtn },
+        components: { CommentListItem },
         props: {
             comments: {
                 type: Array,
