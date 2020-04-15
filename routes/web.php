@@ -4,6 +4,7 @@ Route::view('/', 'welcome')->name('home');
 
 // Statuses routes
 Route::get('statuses', 'StatusController@index')->name('statuses.index');
+Route::get('statuses/{status}', 'StatusController@show')->name('statuses.show');
 Route::post('statuses', 'StatusController@store')->name('statuses.store')->middleware('auth');
 // Route::resource('status', 'StatusController');
 
