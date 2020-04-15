@@ -25,10 +25,7 @@ class UsersCanLikeStatusesTest extends DuskTestCase
             ;
         });
     }
-    /**
-     *
-     * @test
-     */
+    /** @test  */
     public function user_can_like_and_unlike_statuses()
     {
         $user = factory(User::class)->create();
@@ -49,6 +46,33 @@ class UsersCanLikeStatusesTest extends DuskTestCase
                     ->assertSee('ME GUSTA')
                     ->assertSeeIn('@likes-count', 0)
             ;
+        });
+    }
+
+    /** @test  */
+    public function users_can_see_likes_and_unlikes_in_real_time()
+    {
+        $user = factory(User::class)->create();
+        $status = factory(Status::class)->create();
+
+        $this->browse(function (Browser $browser1, Browser $browser2) use ($user, $status) {
+            $browser1->visit('/');
+
+            $browser2->loginAs($user)
+                    ->visit('/')
+                    ->waitForText($status->body)
+                    ->assertSeeIn('@likes-count', 0)
+                    ->press('@like-btn')
+                    ->waitForText('TE GUSTA')
+            ;
+
+            $browser1->assertSeeIn('@likes-count', 1);
+
+            $browser2->press('@like-btn')
+                ->waitForText('ME GUSTA')
+            ;
+
+            $browser1->assertSeeIn('@likes-count', 0);
         });
     }
 }
