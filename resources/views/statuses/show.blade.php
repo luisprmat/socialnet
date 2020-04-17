@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    {{ $status->body }}
+    <div class="container">
+        <status-list-item
+            :status="{{ json_encode($status) }}"
+        ></status-list-item>
+    </div>
 @endsection
 

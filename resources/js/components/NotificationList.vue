@@ -10,7 +10,7 @@
         >
             <slot></slot>
         </a>
-        <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownNotifications">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownNotifications">
             <a v-for="notification in notifications"
                 :dusk="notification.id"
                 :key="notification.id"
