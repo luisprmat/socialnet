@@ -60,7 +60,7 @@ class NewLikeNotification extends Notification
     {
         return [
             'link' => $this->model->path(),
-            'message' => "Al usurio {$this->likeSender->name} le gustó tu publicación"
+            'message' => "Al usuario {$this->likeSender->name} le gustó tu publicación"
         ];
     }
 }
