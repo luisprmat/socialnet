@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
 use Laravel\Dusk\Browser;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 use Tests\DuskTestCase;
 
 class UsersCanGetTheirNotificationsTest extends DuskTestCase
@@ -45,6 +46,30 @@ class UsersCanGetTheirNotificationsTest extends DuskTestCase
                 ->waitFor("@mark-as-read-{$notification->id}")
                 ->assertMissing("@mark-as-unread-{$notification->id}")
             ;
+        });
+    }
+
+    /** @test */
+    public function users_can_view_their_notifications_in_real_time()
+    {
+        $user1 = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+
+        $status = factory(Status::class)->create(['user_id' => $user1->id]);
+
+        $this->browse(function (Browser $browser1, Browser $browser2) use ($user1, $user2, $status) {
+            $browser1->loginAs($user1)
+                ->visit('/')
+                ->resize(1024, 768)
+            ;
+
+            $browser2->loginAs($user2)
+                ->visit('/')
+                ->press('@like-btn')
+                ->pause(1000)
+            ;
+
+            $browser1->assertSeeIn('@notifications-count', 1);
         });
     }
 }
