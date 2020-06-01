@@ -21,6 +21,15 @@ class FriendshipsController extends Controller
         ]);
     }
 
+    public function show(Request $request, User $recipient)
+    {
+        $friendship = Friendship::betweenUsers($request->user(), $recipient)->first();
+
+        return response()->json([
+            'friendship_status' => $friendship->status
+        ]);
+    }
+
     public function destroy(User $user)
     {
         $friendship = Friendship::betweenUsers(auth()->user(), $user)->first();
