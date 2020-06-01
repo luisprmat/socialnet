@@ -6,6 +6,7 @@ use App\Models\Status;
 use App\Models\Friendship;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -100,5 +101,16 @@ class User extends Authenticatable
         $friendship->update(['status' => 'denied']);
 
         return $friendship;
+    }
+
+    public function friends()
+    {
+        $senderFriends = $this->belongsToMany(User::class, 'friendships', 'sender_id', 'recipient_id')
+            ->wherePivot('status', 'accepted')->get();
+
+        $recipientFriends = $this->belongsToMany(User::class, 'friendships', 'recipient_id', 'sender_id')
+            ->wherePivot('status', 'accepted')->get();
+
+        return $senderFriends->merge($recipientFriends);
     }
 }
