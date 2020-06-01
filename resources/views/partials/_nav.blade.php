@@ -27,6 +27,9 @@
                         <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
                     </li>
                 @else
+                    <li class="nav-item">
+                        <a href="{{ route('accept-friendships.index') }}" class="nav-link"><i class="fas fa-user-plus fa-fw"></i></a>
+                    </li>
                     <notification-list><i class="fas fa-bell fa-fw"></i></notification-list>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

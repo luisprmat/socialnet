@@ -1,5 +1,5 @@
 <template>
-    <li class="nav-item dropdown dropdown-item">
+    <li class="nav-item dropdown">
         <a href="#"
             dusk="notifications"
             class="nav-link dropdown-toggle"
